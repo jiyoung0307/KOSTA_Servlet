@@ -1,0 +1,27 @@
+package ch05;
+
+import java.util.*;
+
+//DB에 접속해서 값을 가져오는 역할
+public class ProductService {
+  Map<String, Product> products = new HashMap<>();
+
+//  Map에 담을 정보들
+  public ProductService() {
+    Product p1 = new Product("101","갤럭시","삼성", 100, "2023-10-19");
+    products.put("101", p1);
+    Product p2 = new Product("102","엘지","엘지", 110, "2023-10-10");
+    products.put("102", p2);
+    Product p3 = new Product("103","아이폰","애플", 120, "2023-10-11");
+    products.put("103", p3);
+  }
+
+  public List<Product> findAll() {
+    return new ArrayList<>(products.values());
+  }
+
+  public Product findById(String id){
+    return products.get(id);
+  }
+
+}
