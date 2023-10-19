@@ -7,19 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(description = "hello servlet", urlPatterns = "/hello")
-public class Hello extends HttpServlet {
-  public Hello() {
-    super();
-  }
-
+@WebServlet("/redirect")
+public class RedirectServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    resp.setContentType("text/html; charset=UTF-8");
-    resp.getWriter().append("<html><head></head><body>")
-        .append("<h2>Hello Servlet</h2><hr>")
-        .append("현재 날짜와 시간은 " + java.time.LocalDateTime.now())
-        .append("</body></html>");
+    // redirect.jsp 페이지로 새로운 요청을 하는 방식
+    // req 를 통해 데이터를 가지고 갈 수 없다.
+    req.setAttribute("sharedInfo", "전달된 데이터");
+    resp.sendRedirect("/ch04/redirect.jsp");
   }
 
   @Override
