@@ -3,7 +3,7 @@ package ch06;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.sql.Date;
 @Getter
 @Setter
 public class Student {

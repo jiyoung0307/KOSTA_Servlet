@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/pcontrol")
+//@WebServlet("/pcontrol")
 public class ProductController extends HttpServlet {
   ProductServiceDAO service;
   @Override
@@ -19,7 +19,7 @@ public class ProductController extends HttpServlet {
 
   @Override
   public void destroy() {
-    service.open();
+    service.close();
   }
 
   public ProductController() {
@@ -33,28 +33,28 @@ public class ProductController extends HttpServlet {
     System.out.println(action);
     if(action == null) {
       getServletContext().getRequestDispatcher("/pcontrol?action=list")
-          .forward(req,resp);
+              .forward(req,resp);
     } else {
       if (action.equals("list")) {
         view = list(req,resp);
         getServletContext().getRequestDispatcher("/ch06/"+view)
-            .forward(req,resp);
+                .forward(req,resp);
       } else if(action.equals("info")) {
         view = info(req, resp);
         getServletContext().getRequestDispatcher("/ch06/"+view)
-            .forward(req,resp);
+                .forward(req,resp);
       } else if(action.equals("insert")) {
         view = insert(req, resp);
         if(method.equals("GET")){
           getServletContext().getRequestDispatcher("/ch06/"+view)
-              .forward(req,resp);
+                  .forward(req,resp);
         } else if(method.equals("POST")) {
           resp.sendRedirect(view);
         }
       } else if(action.equals("update")) {
         view = update(req,resp);
         getServletContext().getRequestDispatcher("/ch06/" + view)
-            .forward(req, resp);
+                .forward(req, resp);
       } else if(action.equals("delete")) {
         view = delete(req, resp);
         resp.sendRedirect(view);

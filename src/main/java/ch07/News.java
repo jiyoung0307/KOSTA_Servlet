@@ -3,8 +3,6 @@ package ch07;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.DataTruncation;
-
 @Getter
 @Setter
 public class News {

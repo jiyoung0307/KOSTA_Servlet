@@ -8,10 +8,10 @@
 </head>
 <script>
     function checkDelete(pid){
-      let r = confirm("삭제하시겠습니까?");
-      if (r) {
-         location.href = "/pcontrol?action=delete&id=" + pid;
-      }
+        let r = confirm("삭제하시겠습니까?");
+        if (r) {
+            location.href = "/pcontrol?action=delete&id=" + pid;
+        }
     }
 </script>
 <body>
@@ -23,8 +23,8 @@
     <li>price : ${p.price}</li>
     <li>date : ${p.date}</li>
 </ul>
-    <a href="/pcontrol?action=update&id=${p.id}">수정하기</a>
-    <a href="/pcontrol?action=delete&id=${p.id}">삭제하기</a>
+<a href="/pcontrol?action=update&id=${p.id}">수정하기</a>
+<a href="/pcontrol?action=delete&id=${p.id}">삭제하기</a>
 <%--    <button oncick="checkDelete('${p.id}')">삭제하기</button>--%>
 </body>
 </html>

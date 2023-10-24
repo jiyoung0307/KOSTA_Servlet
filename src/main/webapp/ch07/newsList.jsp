@@ -6,30 +6,41 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuC0mLASjC"
-    crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-    <title>뉴스 관리 앱</title>
+    <title>News List</title>
+    <%--    부트 스트랩, css , javascript library --%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
 <body>
-<h2>News List</h2>
+<div class="container w-75 mt-5 mx-auto">
+    <h2>News List</h2>
+    <hr>
+    <ul class="list-group">
+        <c:forEach var="news" items="${newsList}" varStatus="status">
+            <li class="list-group-item list-group-action d-flex justify-content-between align-item-center">
+                [${status.count}]
+                <a href="/news.nhn?action=getNews&aid=${news.aid}" class="text-decoration-none">${news.title}</a>
+                    ${news.date}
+                <a href="/news.nhn?action=delNews&aid=${news.aid}"><span class="badge bg-secondary">&times;</span></a>
+            </li>
+        </c:forEach>
+    </ul>
+</div>
 <hr>
-<table>
-    <tr>
-        <th>id</th><th>제목</th><th>작성일자</th>
-    </tr>
-    <c:forEach var="news" items="${newsList}" varStatus="status">
-        <tr>
-            <td>${news.aid}</td>
-            <td><a href="/news.nhn?action=info&id=${news.aid}">${news.title}</a></td>
-            <td>${news.date}</td>
-        </tr>
-    </c:forEach>
-    <a href="/news.nhn?action=addNews">추가하기</a>
-</table>
+<button class="btn btn-outline-info mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#addForm"
+        aria-expanded="false" aria-controls="addForm">뉴스 등록</button>
+<div class="collapse" id="addForm">
+    <div class="card card-body">
+        <form action="/news.nhn?action=addNews" enctype="multipart/form-data" method="post">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" id="title" name="title" class="form-control">
+            <label for="img" class="form-label">이미지</label>
+            <input type="file" id="img" name="img" class="form-control">
+            <label for="content" class="form-label">기사내용</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+            <button type="submit" class="btn btn-success mt-3">저장</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
