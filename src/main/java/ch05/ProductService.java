@@ -2,11 +2,9 @@ package ch05;
 
 import java.util.*;
 
-//DB에 접속해서 값을 가져오는 역할
 public class ProductService {
   Map<String, Product> products = new HashMap<>();
 
-//  Map에 담을 정보들
   public ProductService() {
     Product p1 = new Product("101","갤럭시","삼성", 100, "2023-10-19");
     products.put("101", p1);
@@ -23,5 +21,4 @@ public class ProductService {
   public Product findById(String id){
     return products.get(id);
   }
-
 }
